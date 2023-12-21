@@ -3,14 +3,14 @@
 # @Email : ren.tiany@northeastern.edu
 # @Software : PyCharm
 # @Time : 9/25/2023 9:50 PM
-# @File : hw1.py
+# @File : Assemble Sequence.py
 # -------------------------------
 import matplotlib.pyplot as plt
 
 # Set the parameters
 k = 10
-output_file = 'C:/Users/mo/Desktop/contigs.fasta'
-input_file = 'D:/学校/6400/6400-HW1/seqReadFile2023.txt'
+output_file = 'youroutputfilepath/contigs.fasta'
+input_file = 'yourinputfilepath/seqReadFile2023.txt'
 
 def findOverlap(a, b, k):
     """
