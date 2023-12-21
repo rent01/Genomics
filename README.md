@@ -24,12 +24,21 @@ Evaluate the distribution of the reads across each sequence. Create a visualizat
 - 1.	对每个序列，计算每个碱基的覆盖度，即这个位置在多少reads中出现过。
 - 2.	创建一个可视化图表，展示每个序列的每个位置的覆盖度。
 - 3.	通过观察这个图表，我们可以判断测序方法是否存在偏差。
+
 这里的上下文中，"coverage"（覆盖度）指的是在测序数据中，每一个碱基（A、C、G、T）在序列的每个位置出现的频率。具体来说：
 - 1.	如果某个位置的覆盖度很高，这意味着有很多reads包含了这个位置的碱基。这通常表明该位置的数据质量好，测序信号强。
 - 2.	如果某个位置的覆盖度很低，可能意味着很少的reads覆盖了这个位置，这可能是由于测序数据的局限性或者该位置本身就较为罕见。
 - 3.	在基因组测序项目中，理想的情况是整个被测序的区域都有均匀且充分的覆盖度，这样可以确保数据的完整性和准确性。不均匀的覆盖度可能导致某些区域的信息缺失或不准确，这在解释测序结果时需要特别注意。
 - 4.	从图上来说，要判断测序方法是否存在偏见（biased），我们需要分析覆盖度可视化图表。在理想情况下，如果测序方法没有偏见，我们期望看到的是相对均匀的覆盖度分布——即所有位置的碱基都有大致相同的覆盖频率。这个图是merge以后得distribution（当然我也可以用原始数据来做distribution，见图2）。
 ![image](https://github.com/rent01/Genomics/assets/88874618/31d46888-ea25-4afc-b8ab-a7a06d69b83e)
+![image](https://github.com/rent01/Genomics/assets/88874618/69a1c809-f265-4752-b34b-ad29455916f3)
 
+### ⭐ Part 3: Conclusion
+- 1.	At what point does the program output change when you decrease k? 
+When the overlap parameter k is decreased, you can expect to see more merges occurring, since reads will have a higher chance of overlapping with shorter required overlap lengths. This could potentially lead to a more connected assembly but also increases the risk of erroneous merges. The output of the program will change when k becomes small enough that incorrect overlaps are accepted, which might not be true overlaps.
+- 2.	At what point does the program output change when you increase k? 
+When the overlap parameter k is increased, fewer merges will occur since the requirement for overlap is stricter. The output of the program will change when k reaches a threshold where true overlaps are missed, and reads that should be merged remain separate.
+- 3.	What is the relationship between how high k can go and sequencing coverage?
+The relationship between the value of k and sequencing coverage can be quite direct: a higher k can require higher coverage to ensure that all true overlaps are found. If the coverage is low and k is high, it's possible that some true contigs won't be assembled because the necessary overlaps don't exist within the reads. Conversely, a lower k can tolerate lower coverage, as the shorter required overlap will be more common, but again, this increases the risk of false positives in the assembly.
 
 
